@@ -1,6 +1,7 @@
 package apiHelper.test.createBooking;
 
 import apiHelper.test.BaseTest;
+import com.aventstack.extentreports.ExtentTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -15,7 +16,7 @@ public class createBookingTest extends BaseTest {
     @Test
     @Parameters({"env"})
     public static void test_validateCreateBookingEndPoint(String env, Method method) {
-        startTest(method.getName(), "Validate create booking end point");
+        ExtentTest extentTest = startTest(method.getName(), "Validate create booking end point");
         HashMap<String, Object> responseValuesFromPostRequest = createBookingAndGetBookingDetails(env, CREATE_BOOKING, "createBooking.json");
         responseValuesFromPostRequest.forEach((key, value) -> System.out.println(key + " : " + value));
     }

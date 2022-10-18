@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
-
     @BeforeClass
     public void classLevelSetup() {
         Log.info("Tests is starting!");

@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Testing Sample API's">
+    <test name="Booking">
+        <parameter name="env" value="stage"></parameter>
+        <classes>
+            <class name="apiHelper.test.createBooking.createBookingTest"/>
+            <class name="apiHelper.test.getBookingDetails.getBookingEndPoint"/>
+            <class name="apiHelper.test.updateRequest.updateBooking"/>
+            <class name="apiHelper.test.deleteBooking.deletePostEndPoint"/>
+
+        </classes>
+    </test>
+    <!-- Test -->
+</suite> <!-- Suite -->

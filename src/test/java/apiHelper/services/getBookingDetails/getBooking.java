@@ -1,5 +1,7 @@
 package apiHelper.services.getBookingDetails;
 
+import apiHelper.test.BaseTest;
+import apiHelper.util.logs.Log;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -12,18 +14,18 @@ import java.util.List;
 import static apiHelper.apiMethods.getRequest.getRequest;
 import static apiHelper.apiMethods.getRequest.getSpecificRequest;
 
-public class getBooking {
+public class getBooking extends BaseTest {
     public static List<String> getBookingDetails(String env, String endPoint) {
         List<String> bookings = new ArrayList<>();
         Response response = getRequest(env,endPoint);
         if (response.statusCode() == 200) {
             String responseValuesAsString = response.asString();
-            System.out.println("Response is :" +responseValuesAsString);
+            Log.info("Response is :" +responseValuesAsString);
             String bookingId = JsonPath.read(responseValuesAsString, "$.[*].bookingid").toString().
                     replaceAll("\\[|\\]", "").trim();
            bookings = Arrays.asList(bookingId.split(","));
         } else {
-            System.out.println("request failed :" + response);
+            Log.info("request failed :" + response);
         }
         return  bookings;
     }
@@ -34,7 +36,7 @@ public class getBooking {
         Assert.assertEquals(response.statusCode(),200);
         if (response.statusCode() == 200) {
             String responseValuesAsString = response.asString();
-            System.out.println("Response is :" +responseValuesAsString);
+            Log.info("Response is :" +responseValuesAsString);
 
             String firstNameFromResponse = JsonPath.read(responseValuesAsString, "$.firstname").toString();
             String lastNameFromResponse = JsonPath.read(responseValuesAsString, "$.lastname").toString();
@@ -52,7 +54,7 @@ public class getBooking {
             responseValues.put("checkOutDate", checkOutDateFromResponse);
             responseValues.put("additionalneeds", additionalNeedsFromResponse);
         } else {
-            System.out.println("request failed :" + response);
+            Log.info("request failed :" + response);
         }
         return responseValues;
     }

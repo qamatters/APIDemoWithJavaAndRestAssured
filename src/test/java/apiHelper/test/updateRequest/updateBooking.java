@@ -1,19 +1,24 @@
 package apiHelper.test.updateRequest;
 
+import apiHelper.test.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import static apiHelper.constants.endPoints.*;
 import static apiHelper.services.createToken.getToken.getTokenValue;
 import static apiHelper.services.updateBooking.updateBooking.updateBookingAndGetBookingDetails;
+import static apiHelper.util.extentreports.ExtentTestManager.startTest;
 
 
-public class updateBooking {
+public class updateBooking extends BaseTest {
 
     @Test
     @Parameters({"env"})
-    public static void validateUpdateBookingEndPoint(String env) {
+    public static void validateUpdateBookingEndPoint(String env, Method method) {
+        startTest(method.getName(), "Validate update booking end point");
         HashMap<String, Object> updatedValues = new HashMap<>();
         updatedValues.put("firstname", "testUser");
         updatedValues.put("lastname", "testuser1");

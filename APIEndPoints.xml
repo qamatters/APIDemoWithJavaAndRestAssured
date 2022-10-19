@@ -7,6 +7,7 @@
         <parameter name="env" value="stage"></parameter>
         <classes>
             <class name="apiHelper.test.createBooking.createBookingTest"/>
+            <class name="apiHelper.test.createBooking.createBookingEndPointNegativeScenariosTest"/>
             <class name="apiHelper.test.getBookingDetails.getBookingEndPoint"/>
             <class name="apiHelper.test.updateRequest.updateBooking"/>
             <class name="apiHelper.test.deleteBooking.deletePostEndPoint"/>

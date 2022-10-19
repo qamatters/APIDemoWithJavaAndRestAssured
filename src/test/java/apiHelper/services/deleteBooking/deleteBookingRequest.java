@@ -13,7 +13,7 @@ public class deleteBookingRequest extends BaseTest {
         Response response = deleteRequest(env, endPoint, bookingId, tokenValue,  Reporter);
         String responseValuesAsString = response.asString();
         if( response.statusCode() == 201) {
-            Reporter.log(Status.PASS, "Delete booking ID API is successfully working");
+            Reporter.log(Status.PASS, "Delete request for "+bookingId+" is successfully performed");
         } else {
             Reporter.log(Status.FAIL, "Delete booking ID API Response got failed. Response is :" + responseValuesAsString);
             Assert.assertEquals(response.statusCode(), 201);

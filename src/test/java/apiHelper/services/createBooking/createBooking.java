@@ -2,18 +2,21 @@ package apiHelper.services.createBooking;
 
 import apiHelper.test.BaseTest;
 import apiHelper.util.logs.Log;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.jayway.jsonpath.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.prefs.BackingStoreException;
 
 import static apiHelper.apiMethods.postRequest.*;
 
 public class createBooking extends BaseTest {
 
-    public static HashMap<String, Object> createBookingAndGetBookingDetails(String env, String endPoint, String request) {
+    public static HashMap<String, Object> createBookingAndGetBookingDetails(String env, String endPoint, String request, ExtentTest extentTest) {
         Response response = postRequest(env, endPoint, request);
         HashMap<String, Object> responseValues = new HashMap<>();
         Assert.assertEquals(response.statusCode(), 200);
@@ -37,22 +40,32 @@ public class createBooking extends BaseTest {
             responseValues.put("checkOutDate", checkOutDate);
             responseValues.put("additionalneeds", additionalNeeds);
         } else {
-            Log.info("request failed :" + response);
+            extentTest.log(Status.PASS,"request failed :" + response);
             Assert.assertEquals(response.statusCode(), 200);
         }
         return responseValues;
     }
 
-    public static void createBookingWithEmptyBody(String env, String endPoint) {
+    public static void createBookingWithEmptyBody(String env, String endPoint, ExtentTest extentTest) {
         Response response = postRequestWithEmptyBody(env, endPoint);
-        Log.info("Response for create booking with no request body is :" + response.asString());
+        extentTest.log(Status.PASS,"Response for create booking with no request body is :" + response.asString());
         Assert.assertEquals(response.statusCode(), 500);
     }
 
-    public static void createBookingWithNoHeader(String env, String endPoint, String request) {
+    public static void createBookingWithNoHeader(String env, String endPoint, String request, ExtentTest extentTest) {
         Response response = postRequestWithNoHeader(env, endPoint, request);
-        Log.info("Response for create booking with no header is :" + response.asString());
+        extentTest.log(Status.PASS,"Response for create booking with no header is :" + response.asString());
         Assert.assertEquals(response.statusCode(), 500);
+    }
+
+    public static void createBookingEndPointResponseTimeValidation(String env, String endPoint, String request, int responseTimeInSeconds, ExtentTest extentTest) {
+        Response response = postRequest(env, endPoint, request);
+        Assert.assertEquals(response.statusCode(), 200);
+        if(response.getTimeIn(TimeUnit.SECONDS) < responseTimeInSeconds) {
+            extentTest.log(Status.PASS, "Response came in " + response.getTimeIn(TimeUnit.SECONDS) + " seconds");
+        } else {
+            Assert.assertTrue(response.getTimeIn(TimeUnit.SECONDS) < 5);
+        }
     }
 
 }

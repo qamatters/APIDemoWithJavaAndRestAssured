@@ -28,12 +28,12 @@ public class RegressionTest extends BaseTest {
         String updatedName = "deepak";
 
         String token = getTokenValue(env, CREATE_TOKEN, "createAuth.json");
-        HashMap<String, Object> responseValuesFromPostRequest = createBookingAndGetBookingDetails(env, CREATE_BOOKING, requestBody);
+        HashMap<String, Object> responseValuesFromPostRequest = createBookingAndGetBookingDetails(env, CREATE_BOOKING, requestBody, extentTest);
         responseValuesFromPostRequest.forEach((key, value) -> System.out.println(key + " : " + value));
         String bookingId = responseValuesFromPostRequest.get("bookingId").toString();
 
         extentTest.log(Status.PASS, "Newly created booking ID is :" + bookingId );
-        HashMap<String, Object> responseValuesFromGetSpecificRequest = getSpecificBookingDetails(env,GET_BOOKING_IDS, bookingId);
+        HashMap<String, Object> responseValuesFromGetSpecificRequest = getSpecificBookingDetails(env,GET_BOOKING_IDS, bookingId, extentTest);
         responseValuesFromGetSpecificRequest.forEach((key, value) -> System.out.println(key + " : " + value));
 
         extentTest.log(Status.INFO, "Updating the user name and validating that the user name is updated for the booking id :" + bookingId);

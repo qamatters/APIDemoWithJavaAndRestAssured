@@ -1,6 +1,7 @@
 package apiHelper.test.getBookingDetails;
 
 import apiHelper.test.BaseTest;
+import com.aventstack.extentreports.ExtentTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -18,16 +19,16 @@ public class getBookingEndPoint extends BaseTest {
     @Test
     @Parameters({"env"})
     public static void validateGetBookingEndPoint(String env, Method method) {
-        startTest(method.getName(), "Validate Get booking end point");
-        getBookingDetails(env,GET_BOOKING_IDS);
+        ExtentTest extentTest = startTest(method.getName(), "Validate Get booking end point");
+        getBookingDetails(env,GET_BOOKING_IDS, extentTest);
     }
 
     @Test
     @Parameters({"env"})
     public static void validateGetSpecificBookingDetailEndPoint(String env, Method method) {
-        startTest(method.getName(), "Validate get specific booking end point");
-        List<String> bookingIds = getBookingDetails(env,GET_BOOKING_IDS);
-        HashMap<String, Object> responseValuesFromPostRequest = getSpecificBookingDetails(env,GET_BOOKING_IDS, bookingIds.get(0));
+        ExtentTest extentTest = startTest(method.getName(), "Validate get specific booking end point");
+        List<String> bookingIds = getBookingDetails(env,GET_BOOKING_IDS, extentTest);
+        HashMap<String, Object> responseValuesFromPostRequest = getSpecificBookingDetails(env,GET_BOOKING_IDS, bookingIds.get(0), extentTest);
         responseValuesFromPostRequest.forEach((key, value) -> System.out.println(key + " : " + value));
     }
 

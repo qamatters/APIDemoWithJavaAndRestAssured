@@ -19,4 +19,15 @@ public class deleteBookingRequest extends BaseTest {
             Assert.assertEquals(response.statusCode(), 201);
         }
     }
+
+    public static void deleteAlreadyDeletedBookingValidation(String env, String endPoint, String bookingId, String tokenValue, ExtentTest Reporter) {
+        Response response = deleteRequest(env, endPoint, bookingId, tokenValue,  Reporter);
+        String responseValuesAsString = response.asString();
+        if( response.statusCode() == 405) {
+            Reporter.log(Status.PASS, "Delete request for booking id  "+bookingId+" is shown " + responseValuesAsString +" as the booking id is already deleted");
+        } else {
+            Reporter.log(Status.FAIL, "Delete booking ID API Response got failed. Response is :" + responseValuesAsString);
+            Assert.assertEquals(response.statusCode(), 201);
+        }
+    }
 }

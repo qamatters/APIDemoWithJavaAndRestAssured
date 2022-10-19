@@ -6,12 +6,12 @@
     <test name="Booking">
         <parameter name="env" value="stage"></parameter>
         <classes>
-            <class name="apiHelper.test.createBooking.createBookingTest"/>
-            <class name="apiHelper.test.createBooking.createBookingEndPointNegativeScenariosTest"/>
-            <class name="apiHelper.test.getBookingDetails.getBookingEndPoint"/>
-            <class name="apiHelper.test.updateRequest.updateBooking"/>
+<!--            <class name="apiHelper.test.createBooking.createBookingTest"/>-->
+<!--            <class name="apiHelper.test.createBooking.createBookingEndPointNegativeScenariosTest"/>-->
+<!--            <class name="apiHelper.test.getBookingDetails.getBookingEndPoint"/>-->
+<!--            <class name="apiHelper.test.updateRequest.updateBooking"/>-->
             <class name="apiHelper.test.deleteBooking.deletePostEndPoint"/>
-            <class name="apiHelper.test.CRUDScenario.RegressionTest"/>
+<!--            <class name="apiHelper.test.CRUDScenario.RegressionTest"/>-->
 
         </classes>
     </test>

@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Testing Sample API's">
+    <listeners>
+        <listener class-name="apiHelper.util.listeners.TestListener"/>
+    </listeners>
     <test name="Booking">
         <parameter name="env" value="stage"></parameter>
         <classes>
@@ -7,6 +10,7 @@
             <class name="apiHelper.test.getBookingDetails.getBookingEndPoint"/>
             <class name="apiHelper.test.updateRequest.updateBooking"/>
             <class name="apiHelper.test.deleteBooking.deletePostEndPoint"/>
+            <class name="apiHelper.test.CRUDScenario.RegressionTest"/>
 
         </classes>
     </test>
